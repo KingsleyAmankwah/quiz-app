@@ -7,7 +7,7 @@ import { Quiz, QuizData } from '../interfaces';
   providedIn: 'root',
 })
 export class QuizService {
-  private quizURL = 'assets/data.json';
+  private quizURL = '/assets/data.json';
   constructor(private http: HttpClient) {}
 
   getQuizData(): Observable<QuizData> {
