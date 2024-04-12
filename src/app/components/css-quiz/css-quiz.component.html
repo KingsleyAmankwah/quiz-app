@@ -1,0 +1,54 @@
+<div class="flex flex-col lg:flex-row w-full gap-8 justify-between mt-16">
+  <div class="text-white lg:w-1/2 leading-[100%]">
+    <div class="lg:h-[75%]">
+      <p
+        class="italic text-[20px] font-normal leading-[100%] pb-4 text-[#abc1e1]"
+      >
+        Question {{ currentQuestionIndex + 1 }} of 10
+      </p>
+      <h1
+        class="lg:text-[36px] text-[24px] font-medium leading-[100%]"
+        *ngIf="currentQuestion"
+      >
+        {{ currentQuestion.question }}
+      </h1>
+    </div>
+
+    <div class="question-indicator my-6">
+      <div class="bar bg-[#3b4d66] rounded-3xl p-2">
+        <div class="progress-bar rounded-3xl bg-[#a729f5]">Progress bar</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="lg:w-2/4 flex flex-col space-y-6 mb-6">
+    <div
+      *ngFor="let option of currentQuestion?.options; let i = index"
+      [class.correct]="showAnswer && option === currentQuestion?.answer"
+      [class.incorrect]="
+        showAnswer &&
+        i === selectedOptionIndex &&
+        option !== currentQuestion?.answer
+      "
+      (click)="selectOption(i)"
+      class="border-2 border-[#3b4d66] hover:border-[#a729f5] flex items-center w-full gap-5 rounded-2xl text-white p-3 lg:p-5 cursor-pointer bg-[#3b4d66]"
+    >
+      <div
+        class="bg-[#f4f6fa] text-[#626c7f] rounded-md text-[14px] lg:text-[28px] p-5"
+      >
+        {{ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i] }}
+      </div>
+
+      <div class="text-[16px] lg:text-[28px] font-medium lg:leading-[100%]">
+        {{ option }}
+      </div>
+    </div>
+    <button
+      (click)="showAnswer ? nextQuestion() : submit()"
+      class="bg-[#a729f5] hover:bg-[#a729f59e] text-center lg:p-7 p-4 rounded-2xl text-[24px] text-white my-5"
+    >
+      {{ showAnswer ? "Next Question" : "Submit" }}
+    </button>
+  </div>
+</div>
+<!-- </div> -->
