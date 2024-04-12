@@ -1,12 +1,14 @@
 <div class="flex flex-row items-center justify-between mt-12 w-full">
-  <div class="flex justify-center gap-4 items-center">
+  <div class="flex justify-center gap-4 items-center" *ngIf="selectedQuiz">
     <div class="bg-[#f6e7ff] rounded-md p-2">
-      <img src="./assets/images/icon-accessibility.svg" alt="" />
+      <img [src]="selectedQuiz.icon" alt="" />
     </div>
-    <p class="lg:text-[28px] font-medium text-white">Accessibilty</p>
+    <p class="lg:text-[28px] font-medium text-white">
+      {{ selectedQuiz.title }}
+    </p>
   </div>
 
-  <div class="flex justify-end items-end">
+  <div class="flex justify-end items-end ml-auto">
     <span class="lg:me-3 me-1 text-sm font-medium">
       <svg
         xmlns="http://www.w3.org/2000/svg"
