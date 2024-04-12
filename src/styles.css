@@ -36,3 +36,11 @@ body {
 .incorrect {
   border-color: red;
 }
+
+.selected {
+  border-color: #a729f5;
+}
+.selected-bg {
+  background-color: #a729f5;
+  color: white;
+}
