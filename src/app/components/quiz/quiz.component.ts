@@ -28,7 +28,7 @@ export class QuizComponent {
   ) {}
 
   selectOption(index: number): void {
-    if (this.submitClicked) return;
+    // if (this.submitClicked) return;
     this.selectedOption = index;
     this.submitClicked = false;
   }
@@ -55,7 +55,10 @@ export class QuizComponent {
     this.selectedOption = null;
     this.currentQuestionIndex++;
 
-    if (this.quizData && this.currentQuestionIndex < this.quizData.questions.length) {
+    if (
+      this.quizData &&
+      this.currentQuestionIndex < this.quizData.questions.length
+    ) {
       this.currentQuestion = this.quizData.questions[this.currentQuestionIndex];
     } else {
       this.router.navigate(['/results']);
