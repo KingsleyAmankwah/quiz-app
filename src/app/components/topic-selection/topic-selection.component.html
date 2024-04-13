@@ -17,7 +17,7 @@
     <div
       *ngFor="let quiz of quizzes"
       [routerLink]="['/quiz', quiz.title]"
-      class="border-2 border-[#3b4d66] hover:border-[#a729f5] flex items-center w-full gap-5 rounded-2xl text-white p-7 cursor-pointer bg-[#3b4d66]"
+      class="border-[3px] border-[#3b4d66] hover:border-[#a729f5] flex items-center w-full gap-5 rounded-2xl text-white p-7 cursor-pointer bg-[#3b4d66]"
     >
       <div class="rounded-md p-2" [style.background]="quiz.color">
         <img [src]="quiz.icon" alt="" />
