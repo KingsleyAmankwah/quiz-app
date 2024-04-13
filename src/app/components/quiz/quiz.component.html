@@ -16,7 +16,7 @@
 
     <div class="question-indicator my-6">
       <div class="bar bg-[#3b4d66] rounded-3xl p-2">
-        <div class="progress-bar rounded-3xl bg-[#a729f5]">Progress bar</div>
+        <div class="progress-bar rounded-3xl bg-[#a729f5] h-5" [style.width]="progress"></div>
       </div>
     </div>
   </div>
@@ -25,24 +25,52 @@
     <div
       *ngFor="let option of currentQuestion?.options; let i = index"
       [class.correct]="showAnswer && option === currentQuestion?.answer"
-      [class.incorrect]="
-        showAnswer &&
-        i === selectedOptionIndex &&
-        option !== currentQuestion?.answer
-      "
-      [class.selected]="i === selectedOptionIndex"
+      [class.incorrect]="showAnswer && i === selectedOption && option !== currentQuestion?.answer"
+      [class.selected]="i === selectedOption"
       (click)="selectOption(i)"
-      class="border-2 border-[#3b4d66] hover:border-[#a729f5] flex items-center w-full gap-5 rounded-2xl text-white p-3 lg:p-5 cursor-pointer bg-[#3b4d66]"
+      class="border-[3px] border-[#3b4d66] hover:border-[#a729f5] flex items-center w-full gap-5 rounded-2xl text-white p-3 lg:p-5 cursor-pointer bg-[#3b4d66]"
     >
       <div
         class="bg-[#f4f6fa] text-[#626c7f] rounded-md text-[14px] lg:text-[28px] p-5"
-        [class.selected-bg]="i === selectedOptionIndex"
+        [class.selected-bg]="i === selectedOption"
+        [class.incorrect-bg]="showAnswer && i === selectedOption && option !== currentQuestion?.answer"
+        [class.correct-bg]="showAnswer && option === currentQuestion?.answer"
       >
         {{ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i] }}
       </div>
 
       <div class="text-[16px] lg:text-[28px] font-medium lg:leading-[100%]">
         {{ option }}
+      </div>
+
+      <div class="flex justify-end ml-auto">
+        <svg
+          *ngIf="showAnswer && i === selectedOption && option !== currentQuestion?.answer"
+          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+          fill="none"
+          viewBox="0 0 40 40"
+        >
+          <path
+            fill="#EE5454"
+            d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-5.402 7.415.142-.175a1.25 1.25 0 0 1 1.595-.143l.175.143L20 18.233l3.49-3.493a1.25 1.25 0 0 1 1.595-.143l.175.143a1.25 1.25 0 0 1 .142 1.595l-.142.175L21.767 20l3.493 3.49a1.25 1.25 0 0 1 .142 1.595l-.142.175a1.25 1.25 0 0 1-1.595.142l-.175-.142L20 21.767l-3.49 3.493a1.25 1.25 0 0 1-1.595.142l-.175-.142a1.25 1.25 0 0 1-.143-1.595l.143-.175L18.233 20l-3.493-3.49a1.25 1.25 0 0 1-.143-1.595Z"
+          />
+        </svg>
+
+        <svg
+          *ngIf="showAnswer && option === currentQuestion?.answer"
+          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+          fill="none"
+          viewBox="0 0 40 40"
+        >
+          <path
+            fill="#26D782"
+            d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-1.875 15.105L25.3 15.41a1.25 1.25 0 0 1 1.915 1.593l-.145.174-8.06 8.08a1.25 1.25 0 0 1-1.595.148l-.175-.145-4.375-4.375a1.25 1.25 0 0 1 1.595-1.913l.175.143 3.49 3.49Z"
+          />
+        </svg>
       </div>
     </div>
     <button
@@ -51,5 +79,26 @@
     >
       {{ showAnswer ? "Next Question" : "Submit" }}
     </button>
+
+    <div
+      class="flex flex-row items-center gap-2 justify-center"
+      *ngIf="submitClicked && selectedOption === null"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="40"
+        height="40"
+        fill="none"
+        viewBox="0 0 40 40"
+      >
+        <path
+          fill="#EE5454"
+          d="M20 5a15 15 0 1 1 0 30 15 15 0 0 1 0-30Zm0 2.5a12.5 12.5 0 1 0 0 25 12.5 12.5 0 0 0 0-25Zm-5.402 7.415.142-.175a1.25 1.25 0 0 1 1.595-.143l.175.143L20 18.233l3.49-3.493a1.25 1.25 0 0 1 1.595-.143l.175.143a1.25 1.25 0 0 1 .142 1.595l-.142.175L21.767 20l3.493 3.49a1.25 1.25 0 0 1 .142 1.595l-.142.175a1.25 1.25 0 0 1-1.595.142l-.175-.142L20 21.767l-3.49 3.493a1.25 1.25 0 0 1-1.595.142l-.175-.142a1.25 1.25 0 0 1-.143-1.595l.143-.175L18.233 20l-3.493-3.49a1.25 1.25 0 0 1-.143-1.595Z"
+        />
+      </svg>
+      <p class="text-red-500 text-[24px] font-normal">
+        Please select an answer
+      </p>
+    </div>
   </div>
 </div>
