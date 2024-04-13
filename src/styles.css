@@ -30,11 +30,13 @@ body {
 }
 
 .correct {
-  border-color: green;
+  border-color: green !important;
+  border-width: 3px;
 }
 
 .incorrect {
-  border-color: red;
+  border-color: red !important;
+  border-width: 3px;
 }
 
 .selected {
@@ -43,4 +45,12 @@ body {
 .selected-bg {
   background-color: #a729f5;
   color: white;
+}
+.correct-bg {
+  background-color: green;
+  color: white;
+}
+.incorrect-bg {
+  background-color: red;
+
 }
