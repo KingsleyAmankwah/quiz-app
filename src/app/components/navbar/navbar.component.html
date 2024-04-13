@@ -1,6 +1,6 @@
 <div class="flex flex-row items-center justify-between mt-12 w-full">
   <div class="flex justify-center gap-4 items-center" *ngIf="selectedQuiz">
-    <div class="bg-[#f6e7ff] rounded-md p-2">
+    <div class="rounded-md p-2" [style.background]="selectedQuiz.color">
       <img [src]="selectedQuiz.icon" alt="" />
     </div>
     <p class="lg:text-[28px] font-medium text-white">

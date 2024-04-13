@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Quiz } from '../../interfaces';
+import { Quiz, QuizData } from '../../interfaces';
 import { CommonModule } from '@angular/common';
+import { QuizService } from '../../services/quiz.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,12 @@ import { CommonModule } from '@angular/common';
 })
 export class NavbarComponent {
   selectedQuiz: Quiz | null = null;
-  selectQuiz(quiz: Quiz): void {
-    this.selectedQuiz = quiz;
+
+  constructor(private quizService: QuizService) {}
+
+  ngOnInit(): void {
+    this.quizService.selectedQuiz$.subscribe((quiz) => {
+      this.selectedQuiz = quiz;
+    });
   }
 }
