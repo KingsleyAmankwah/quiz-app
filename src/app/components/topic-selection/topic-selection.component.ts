@@ -9,16 +9,21 @@ import { Quiz } from '../../interfaces';
   standalone: true,
   imports: [RouterLink, CommonModule],
   templateUrl: './topic-selection.component.html',
-  styleUrl: './topic-selection.component.css'
+  styleUrl: './topic-selection.component.css',
 })
 export class TopicSelectionComponent {
   quizzes: Quiz[] = [];
+  isDarkTheme = false;
 
   constructor(private quizService: QuizService) {}
 
   ngOnInit(): void {
     this.quizService.getQuizData().subscribe((data: { quizzes: Quiz[] }) => {
       this.quizzes = data.quizzes;
+
+      this.quizService.isDarkTheme.subscribe((darkTheme) => {
+        this.isDarkTheme = darkTheme;
+      });
     });
   }
 }

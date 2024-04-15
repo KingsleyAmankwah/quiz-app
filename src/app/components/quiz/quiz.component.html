@@ -1,5 +1,11 @@
 <div class="flex flex-col lg:flex-row w-full gap-8 justify-between mt-16">
-  <div class="text-white lg:w-1/2 leading-[100%]">
+  <div
+    class="lg:w-1/2 leading-[100%]"
+    [ngClass]="{
+      'text-white': isDarkTheme,
+      'text-[#3b4d66]': !isDarkTheme
+    }"
+  >
     <div class="lg:h-[75%]">
       <p
         class="italic text-[20px] font-normal leading-[100%] pb-4 text-[#abc1e1]"
@@ -15,8 +21,17 @@
     </div>
 
     <div class="question-indicator my-6">
-      <div class="bar bg-[#3b4d66] rounded-3xl p-2">
-        <div class="progress-bar rounded-3xl bg-[#a729f5] h-5" [style.width]="progress"></div>
+      <div
+        [ngClass]="{
+          'rounded-3xl p-2': true,
+          'bg-white': !isDarkTheme,
+          'bg-[#3b4d66]': isDarkTheme
+        }"
+      >
+        <div
+          class="progress-bar rounded-3xl bg-[#a729f5] h-5"
+          [style.width]="progress"
+        ></div>
       </div>
     </div>
   </div>
@@ -25,15 +40,25 @@
     <div
       *ngFor="let option of currentQuestion?.options; let i = index"
       [class.correct]="showAnswer && option === currentQuestion?.answer"
-      [class.incorrect]="showAnswer && i === selectedOption && option !== currentQuestion?.answer"
+      [class.incorrect]="
+        showAnswer && i === selectedOption && option !== currentQuestion?.answer
+      "
       [class.selected]="i === selectedOption"
       (click)="selectOption(i)"
-      class="border-[3px] border-[#3b4d66] hover:border-[#a729f5] flex items-center w-full gap-5 rounded-2xl text-white p-3 lg:p-5 cursor-pointer bg-[#3b4d66]"
+      class="border-[3px]  hover:border-[#a729f5] flex items-center w-full gap-5 rounded-2xl p-3 lg:p-5 cursor-pointer"
+      [ngClass]="{
+        'bg-[#3b4d66] border-[#3b4d66] text-white': isDarkTheme,
+        'bg-white text-[#3b4d66] border-white': !isDarkTheme
+      }"
     >
       <div
         class="bg-[#f4f6fa] text-[#626c7f] rounded-md text-[14px] lg:text-[28px] p-5"
         [class.selected-bg]="i === selectedOption"
-        [class.incorrect-bg]="showAnswer && i === selectedOption && option !== currentQuestion?.answer"
+        [class.incorrect-bg]="
+          showAnswer &&
+          i === selectedOption &&
+          option !== currentQuestion?.answer
+        "
         [class.correct-bg]="showAnswer && option === currentQuestion?.answer"
       >
         {{ "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i] }}
@@ -45,7 +70,11 @@
 
       <div class="flex justify-end ml-auto">
         <svg
-          *ngIf="showAnswer && i === selectedOption && option !== currentQuestion?.answer"
+          *ngIf="
+            showAnswer &&
+            i === selectedOption &&
+            option !== currentQuestion?.answer
+          "
           xmlns="http://www.w3.org/2000/svg"
           width="40"
           height="40"

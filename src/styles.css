@@ -9,33 +9,18 @@
 }
 
 body {
-  background-image: url("./assets/images/pattern-background-desktop-dark.svg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #313e51;
-  /* width: 100vw; */
-  /* height: 100vh; */
-}
-
-.dark-theme {
-  --purple: #a729f5;
-  --main-bg: #313e51;
-  --secondary-text: #abc1e1;
-  --secondary-background: #3b4d66;
-  --main-text: #fff;
-  --green: #26d782;
-  --red: #ee5454;
-  --box-shadow: rgba(49, 62, 81, 0.14);
 }
 
 .correct {
-  border-color: green !important;
+  border-color: #26d782 !important;
   border-width: 3px;
 }
 
 .incorrect {
-  border-color: red !important;
+  border-color: #ee5454 !important;
   border-width: 3px;
 }
 
@@ -47,10 +32,9 @@ body {
   color: white;
 }
 .correct-bg {
-  background-color: green;
+  background-color: #26d782;
   color: white;
 }
 .incorrect-bg {
-  background-color: red;
-
+  background-color: #ee5454;
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Quiz, QuizData } from '../../interfaces';
+import { Quiz } from '../../interfaces';
 import { CommonModule } from '@angular/common';
 import { QuizService } from '../../services/quiz.service';
 
@@ -12,12 +12,18 @@ import { QuizService } from '../../services/quiz.service';
 })
 export class NavbarComponent {
   selectedQuiz: Quiz | null = null;
+  isDarkTheme = false;
 
   constructor(private quizService: QuizService) {}
 
   ngOnInit(): void {
-    this.quizService.selectedQuiz$.subscribe((quiz) => {
+    this.quizService.selectedQuiz.subscribe((quiz) => {
       this.selectedQuiz = quiz;
     });
+  }
+
+  toggleTheme() {
+    this.isDarkTheme = !this.isDarkTheme;
+    this.quizService.toggleTheme();
   }
 }

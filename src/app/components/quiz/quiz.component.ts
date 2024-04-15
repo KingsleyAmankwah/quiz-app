@@ -20,6 +20,7 @@ export class QuizComponent {
   showAnswer = false;
   submitClicked = false;
   score = 0;
+  isDarkTheme = false;
 
   constructor(
     private quizService: QuizService,
@@ -82,6 +83,10 @@ export class QuizComponent {
           }
         }
       }
+    });
+
+    this.quizService.isDarkTheme.subscribe((darkTheme) => {
+      this.isDarkTheme = darkTheme;
     });
   }
 

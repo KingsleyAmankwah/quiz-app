@@ -1,5 +1,11 @@
 <div class="flex flex-col md:flex-row w-full justify-between mt-16">
-  <div class="text-white lg:w-1/2">
+  <div
+    class="lg:w-1/2"
+    [ngClass]="{
+      'text-[#3b4d66]': !isDarkTheme,
+      'text-white': isDarkTheme,
+    }"
+  >
     <h1 class="font-light lg:text-[64px] text-[40px] leading-[100%]">
       Welcome to the
     </h1>
@@ -7,7 +13,11 @@
       Frontend Quiz!
     </h1>
     <p
-      class="italic text-[20px] font-normal leading-[100%] py-12 text-[#abc1e1]"
+      class="italic text-[20px] font-normal leading-[100%] py-12"
+      [ngClass]="{
+        'text-[#3b4d66]': !isDarkTheme,
+        'text-[#abc1e1]': isDarkTheme
+      }"
     >
       Pick a subject to get started.
     </p>
@@ -17,7 +27,11 @@
     <div
       *ngFor="let quiz of quizzes"
       [routerLink]="['/quiz', quiz.title]"
-      class="border-[3px] border-[#3b4d66] hover:border-[#a729f5] flex items-center w-full gap-5 rounded-2xl text-white p-7 cursor-pointer bg-[#3b4d66]"
+      [ngClass]="{
+        'border-[3px] hover:border-[#a729f5] flex items-center w-full gap-5 rounded-2xl p-7 cursor-pointer': true,
+        'border-[#3b4d66] bg-[#3b4d66] text-white': isDarkTheme,
+        'border-white bg-white text-[#3b4d66]': !isDarkTheme,
+      }"
     >
       <div class="rounded-md p-2" [style.background]="quiz.color">
         <img [src]="quiz.icon" alt="" />
