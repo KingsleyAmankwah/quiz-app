@@ -8,16 +8,20 @@ import { Quiz, QuizData } from '../interfaces';
 })
 export class QuizService {
   private quizURL = '/assets/data.json';
-  constructor(private http: HttpClient) {}
 
   private selectedQuizSubject = new BehaviorSubject<Quiz | null>(null);
-  selectedQuiz$ = this.selectedQuizSubject.asObservable();
+  selectedQuiz = this.selectedQuizSubject.asObservable();
 
   private scoreSubject = new BehaviorSubject<number>(0);
   score$ = this.scoreSubject.asObservable();
 
-  private currentTopic = new BehaviorSubject<string | null>(null);
-  currentTopic$ = this.currentTopic.asObservable();
+  private currentTopicSubject = new BehaviorSubject<string | null>(null);
+  currentTopic = this.currentTopicSubject.asObservable();
+
+  private isDarkThemeSubject = new BehaviorSubject<boolean>(true);
+  isDarkTheme = this.isDarkThemeSubject.asObservable();
+
+  constructor(private http: HttpClient) {}
 
   setScore(score: number): void {
     this.scoreSubject.next(score);
@@ -28,7 +32,7 @@ export class QuizService {
   }
 
   setTopic(topic: string): void {
-    this.currentTopic.next(topic);
+    this.currentTopicSubject.next(topic);
   }
 
   setSelectedQuiz(quiz: Quiz): void {
@@ -37,5 +41,10 @@ export class QuizService {
 
   getQuizData(): Observable<QuizData> {
     return this.http.get<QuizData>(this.quizURL);
+  }
+
+  toggleTheme() {
+    const currentTheme = this.isDarkThemeSubject.value;
+    this.isDarkThemeSubject.next(!currentTheme);
   }
 }
