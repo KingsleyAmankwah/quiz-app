@@ -3,7 +3,7 @@
     <div class="rounded-md p-2" [style.background]="selectedQuiz.color">
       <img [src]="selectedQuiz.icon" alt="" />
     </div>
-    <p class="lg:text-[28px] font-medium text-white">
+    <p class="lg:text-[28px] font-medium">
       {{ selectedQuiz.title }}
     </p>
   </div>
@@ -26,6 +26,7 @@
     <label class="inline-flex items-end cursor-pointer">
       <input type="checkbox" value="" class="sr-only peer" />
       <div
+        (click)="toggleTheme()"
         class="relative w-14 h-6 bg-[#a729f5] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 lg:after:w-[26.5px] after:w-[26px] after:transition-all"
       ></div>
       <span
